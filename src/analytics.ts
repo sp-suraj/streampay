@@ -95,3 +95,21 @@ run()
     console.error("Fatal Worker Error:", err);
     process.exit(1);
   });
+
+async function gracefulShutdown() {
+  try {
+    io.close(() => console.log("WS server closed!"));
+    server.close(() => console.log("Server closed"));
+    await consumer.disconnect();
+    console.log("Kafka disconnected");
+    redis.disconnect();
+    console.log("Redis disconnected");
+    process.exit(0);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
+
+process.on("SIGINT", () => gracefulShutdown());
+process.on("SIGTERM", () => gracefulShutdown());
