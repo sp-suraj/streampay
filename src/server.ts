@@ -5,6 +5,7 @@ import { Queue } from "bullmq";
 import { Kafka } from "kafkajs";
 import http from "http";
 import jwt from "jsonwebtoken";
+import cors from "cors";
 
 const JWT_SECRET = process.env.JWT_SECRET || "supra-jwt-secret-key";
 
@@ -14,6 +15,11 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: "*",
+  }),
+);
 
 const connection = new IORedis(process.env.REDIS_URL!, {
   maxRetriesPerRequest: null,
