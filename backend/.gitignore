@@ -1,0 +1,4 @@
+node_modules
+.env
+load-test.ts
+seed.ts

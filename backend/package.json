@@ -1,0 +1,42 @@
+{
+  "name": "streampay",
+  "version": "1.0.0",
+  "description": "Event-Driven Analytics & Payment Pipeline",
+  "main": "index.js",
+  "scripts": {
+    "start:api": "tsx src/api.ts",
+    "start:analytics": "tsx src/analytics.ts",
+    "start:worker": "tsx src/worker.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "keywords": [
+    "microservices",
+    "kafka",
+    "redis",
+    "bullmq",
+    "event-driven"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bullmq": "^5.71.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "drizzle-orm": "^0.45.1",
+    "express": "^5.2.1",
+    "ioredis": "^5.10.1",
+    "jsonwebtoken": "^9.0.3",
+    "kafkajs": "^2.2.4",
+    "pg": "^8.20.0",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/pg": "^8.20.0",
+    "drizzle-kit": "^0.31.10",
+    "tsx": "^4.21.0"
+  }
+}
