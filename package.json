@@ -1,12 +1,23 @@
 {
-  "name": "playhub",
+  "name": "streampay",
   "version": "1.0.0",
-  "description": "",
+  "description": "Event-Driven Analytics & Payment Pipeline",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:api": "tsx src/api.ts",
+    "start:analytics": "tsx src/analytics.ts",
+    "start:worker": "tsx src/worker.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
-  "keywords": [],
+  "keywords": [
+    "microservices",
+    "kafka",
+    "redis",
+    "bullmq",
+    "event-driven"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
