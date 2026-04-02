@@ -61,8 +61,8 @@ const run = async () => {
     });
   }, 2000);
 
-  server.listen(8080, () => {
-    console.log("Analytics Worker & WebSocket server running on port 8080");
+  server.listen(3001, () => {
+    console.log("Analytics Worker & WebSocket server running on port 3001");
   });
 };
 

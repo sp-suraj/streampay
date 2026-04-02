@@ -29,11 +29,24 @@ producer
 
 app.post("/api/subscribe", async (req, res) => {
   const { userId, planType } = req.body;
-
-  const job = await paymentQueue.add("process-payment", {
-    userId,
-    planType,
-  });
+  const today = new Date().toISOString().split("T")[0];
+  const uniqueTransactionId = `sub_${userId}_${planType}_${today}`;
+  const job = await paymentQueue.add(
+    "process-payment",
+    {
+      userId,
+      planType,
+    },
+    {
+      jobId: uniqueTransactionId,
+      attempts: 3,
+      backoff: {
+        type: "exponential",
+        delay: 5000,
+      },
+      removeOnComplete: true,
+    },
+  );
 
   console.log(
     `[API] accepted the request. Job Id: ${job.id} added to the queue.`,
