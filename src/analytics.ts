@@ -3,6 +3,9 @@ import IORedis from "ioredis";
 import * as dotenv from "dotenv";
 import http from "http";
 import { Server } from "socket.io";
+import jwt from "jsonwebtoken";
+
+const JWT_SECRET = process.env.JWT_SECRET || "supra-jwt-secret-key";
 
 dotenv.config();
 
@@ -12,6 +15,26 @@ const io = new Server(server, {
     origin: "*",
     methods: ["GET", "POST"],
   },
+});
+
+io.use((socket, next) => {
+  const token = socket.handshake.auth?.token;
+
+  if (!token) {
+    return next(new Error("Authentication error: No token provided"));
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    socket.data.user = decoded;
+    next();
+  } catch (error) {
+    return next(new Error("Invalid token."));
+  }
+});
+
+io.on("connection", (socket) => {
+  console.log("User connected: ", socket.data.user);
 });
 
 const redis = new IORedis(process.env.REDIS_URL!, {

@@ -4,6 +4,9 @@ import * as dotenv from "dotenv";
 import { Queue } from "bullmq";
 import { Kafka } from "kafkajs";
 import http from "http";
+import jwt from "jsonwebtoken";
+
+const JWT_SECRET = process.env.JWT_SECRET || "supra-jwt-secret-key";
 
 dotenv.config();
 const app = express();
@@ -26,6 +29,14 @@ producer
   .connect()
   .then(() => console.log("Kafka connected successfully!"))
   .catch((err) => console.log("Error", err));
+
+app.post("/api/login", async (req, res) => {
+  const { userId } = req.body;
+  const token = jwt.sign({ userId, role: "Admin" }, JWT_SECRET, {
+    expiresIn: "1h",
+  });
+  res.json({ token });
+});
 
 app.post("/api/subscribe", async (req, res) => {
   const { userId, planType } = req.body;
