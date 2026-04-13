@@ -4,7 +4,7 @@
   "description": "Event-Driven Analytics & Payment Pipeline",
   "main": "index.js",
   "scripts": {
-    "start:api": "tsx src/api.ts",
+    "start:api": "tsx src/server.ts",
     "start:analytics": "tsx src/analytics.ts",
     "start:worker": "tsx src/worker.ts",
     "db:generate": "drizzle-kit generate",
