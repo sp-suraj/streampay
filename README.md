@@ -1,5 +1,7 @@
 # StreamPay: Event-Driven Analytics & Payment Pipeline
 
+[![Demo Video](https://img.shields.io/badge/Watch_Demo_Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/UtTyvn7MyOY)
+
 StreamPay is a high-throughput, fault-tolerant microservice architecture designed to handle concurrent payment processing and real-time streaming analytics. Built to demonstrate enterprise-grade system design, it features distributed queues, stream processing, database-level idempotency, and a secure real-time observability dashboard.
 
 ## 🏗 System Architecture
