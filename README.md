@@ -2,6 +2,15 @@
 
 [![Demo Video](https://img.shields.io/badge/Watch_Demo_Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/UtTyvn7MyOY)
 
+A scalable backend system that processes payments and real-time analytics using Kafka, Redis, and PostgreSQL.
+
+## ⚡ Key Features
+- Event-driven architecture using Kafka
+- Real-time analytics with Redis sorted sets
+- Idempotent payment processing
+- WebSocket-based live updates
+- Dockerized microservices
+
 StreamPay is a high-throughput, fault-tolerant microservice architecture designed to handle concurrent payment processing and real-time streaming analytics. Built to demonstrate enterprise-grade system design, it features distributed queues, stream processing, database-level idempotency, and a secure real-time observability dashboard.
 
 ## 🏗 System Architecture
